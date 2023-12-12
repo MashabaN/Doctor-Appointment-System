@@ -61,11 +61,17 @@ class DiagnoseController extends Controller
 
         Diagnose::query()->where('id', $diagnose->id)->update($validatedData);
 
-        Alert::toast('Diagnosis Successfully Added!', 'success');
+        Alert::toast('Diagnosis Successfully Updated!', 'success');
 
         return redirect('/');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         // Validate the incoming request data
@@ -79,9 +85,6 @@ class DiagnoseController extends Controller
         $validatedData['patient_id'] = auth()->user()->id;
 
         Diagnose::query()->create($validatedData);
-
-        // Create a new Diagnose instance and save it to the database
-        
 
         // Display a success message
         Alert::toast('Diagnosis Successfully Added!', 'success');
